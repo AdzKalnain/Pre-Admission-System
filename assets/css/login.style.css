@@ -1,0 +1,103 @@
+/*.navbar{
+    background-color:rgba(0, 128, 128, 0.808);
+}
+.navbar .navbar-brand img{
+    width: 90px;
+    border-radius: 60px;
+    margin-right: 10px;
+}
+.navbar .navbar-collapse ul li a.active{
+    border-bottom: 2px solid white;
+}
+@media (max-width: 440px){
+    .navbar .navbar-brand {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .navbar .navbar-brand img{
+        width: 30px;
+        margin-right: 2px;
+    }
+}*/
+.container {
+    max-width: 760px;
+}
+.container main div img{
+    width: 120px;
+    border-radius: 60px;
+}
+/*.container main #form-body{
+    background-color: white;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin: auto;
+}*/
+/*.container main #form-body{
+    background-color: white;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin: auto;
+}*/
+#form-body{
+    background-color: white;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin: auto;
+}
+.container main .form .link {
+    text-decoration: none;
+    color: grey;
+}
+.container main .form .pressMe{
+    color: crimson;
+}
+
+#username,#password{
+    border: none;
+    border-bottom: 2px solid rgb(99, 95, 95);
+    text-align: center;
+    border-radius: 0;
+}
+.form-label{
+    color: rgb(87, 85, 85);
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+h4{
+    color: rgb(85, 84, 84);
+}
+.btn-login{
+    background-color:crimson;
+    color: white;
+}
+.btn-login:hover{
+    background-color: rgb(173, 17, 49);
+    color: whitesmoke;
+}
+
+/*.btn-cancel{
+    background-color: grey;
+}
+.btn.btn-cancel a{
+    text-decoration: none;
+    color: white;
+    padding: 5px 60px 5px 60px;
+}
+.btn.btn-cancel:hover{
+    background-color: rgb(102, 101, 101);
+}*/
+@media (max-width: 375px){
+    .h2{
+        font-size: 20px;
+    }
+    .form-label{
+        font-size: 15px;
+    }
+    .container main .form .link{
+        font-size: 13px;
+    }
+    .container main div img{
+        width: 90px;
+        border-radius: 60px;
+    }
+}

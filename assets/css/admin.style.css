@@ -1,0 +1,12 @@
+:root {
+    --page-header-bgColor: crimson;
+    --page-header-bgColor-hover: rgba(0, 0, 0, 0.103);
+    --page-header-txtColor: white;
+    --page-header-headingColor: rgb(202, 198, 198);
+    --page-header-width: 220px;
+    --page-content-bgColor: #f0f1f6;
+    --page-content-txtColor: #171616;
+    --page-content-blockColor: #fff;
+    --border-radius: 4px;
+    --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
+  }

@@ -1,0 +1,123 @@
+[
+        {
+            "applicantid": 202100011,
+            "username": "adzkalnain",
+            "fname": "Adzmi",
+            "lname": "Kalnain",
+            "email": "adzkalnain@gmail.com",
+            "user_type": "admin",
+            "password": "admin",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 201400001,
+            "username": "aizzy",
+            "fname": "Aizzy Diane",
+            "lname": "Algupera",
+            "email": "aizzy@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 201400002,
+            "username": "migfren",
+            "fname": "Migfren",
+            "lname": "Limen",
+            "email": "migfren@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 201800002,
+            "username": "wenefredo",
+            "fname": "Wenefredo",
+            "lname": "Tejero",
+            "email": "wenefredo@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 201800003,
+            "username": "dale",
+            "fname": "Ronald Dale",
+            "lname": "Fuentebella",
+            "email": "dale@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 201800004,
+            "username": "mark",
+            "fname": "Mark Anthony",
+            "lname": "Tubat",
+            "email": "mark@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 201800005,
+            "username": "josua",
+            "fname": "Josua",
+            "lname": "Habil",
+            "email": "josua@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 201800006,
+            "username": "janrenzo",
+            "fname": "Jan Renzo",
+            "lname": "Facto",
+            "email": "janrenzo@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 201801928,
+            "username": "jason",
+            "fname": "Jason",
+            "lname": "Beltran",
+            "email": "jason@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 202000018,
+            "username": "juztyne",
+            "fname": "Juztyne Raine",
+            "lname": "Abella",
+            "email": "juztyne@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        },
+        {
+            "applicantid": 202100001,
+            "username": "hannah",
+            "fname": "Hannah Charise",
+            "lname": "Toroy",
+            "email": "hannah@gmail.com",
+            "user_type": "student",
+            "password": "default",
+            "studentType": "Regular",
+            "college": "Institute of Computer Studied"
+        }
+]
