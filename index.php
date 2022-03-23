@@ -40,8 +40,9 @@
                     $_SESSION["loggedin"] = true;
                     $_SESSION['user_type'] = $logged_in_user['user_type'];
                     $_SESSION['login_user'] = $username;
-                    $_SESSION['userID'] = $rows['id'];
-                    $_SESSION['userCollege'] = $rows['college'];
+                    $_SESSION['userID'] = $logged_in_user['id'];
+                    $_SESSION['username'] = $logged_in_user['fname'] ." ". $logged_in_user['lname']  ;
+                    $_SESSION['userCollege'] = $logged_in_user['college_name'];
                     $_SESSION['success']  = "You are now logged in";
                     header('location: admin/controller.php');		  
                 }		
@@ -51,8 +52,9 @@
                     $_SESSION["loggedin"] = true;
                     $_SESSION['user_type'] = $logged_in_user['user_type'];
                     $_SESSION['login_user'] = $username;
-                    $_SESSION['userID'] = $rows['id'];
-                    $_SESSION['userCollege'] = $rows['college'];
+                    $_SESSION['userID'] = $logged_in_user['id'];
+                    $_SESSION['username'] = $logged_in_user['fname'] ." ". $logged_in_user['lname']  ;
+                    $_SESSION['userCollege'] = $logged_in_user['college_name'];
                     $_SESSION['success']  = "You are now logged in";
                     header('location: admin/controller.php');
                 }
@@ -62,73 +64,13 @@
                     $_SESSION["loggedin"] = true;
                     $_SESSION['user_type'] = $logged_in_user['user_type'];
                     $_SESSION['login_user'] = $username;
-                    $_SESSION['userID'] = $rows['id'];
-                    $_SESSION['userCollege'] = $rows['college'];
+                    $_SESSION['userID'] = $logged_in_user['id'];
+                    $_SESSION['username'] = $logged_in_user['fname'] ." ". $logged_in_user['lname']  ;
+                    $_SESSION['userCollege'] = $logged_in_user['college_name'];
                     $_SESSION['success']  = "You are now logged in";
                     header('location: admin/controller.php');
                 }
-
-                // elseif ($logged_in_user['user_type'] == 'ics-evaluator'){
-
-                //     $_SESSION['user'] = $logged_in_user;
-                //     $_SESSION['login_user'] = $username;
-                //     $_SESSION['userID'] = $rows['id'];
-                //     $_SESSION['success']  = "You are now logged in";
-                //     header('location: evaluator/ics.evaluator.main.php');
-                // }
-
-                // elseif ($logged_in_user['user_type'] == 'coe-evaluator'){
-
-                //     $_SESSION['user'] = $logged_in_user;
-                //     $_SESSION['login_user'] = $username;
-                //     $_SESSION['userID'] = $rows['id'];
-                //     $_SESSION['success']  = "You are now logged in";
-                //     header('location: evaluator/coe.evaluator.main.php');
-                // }
                 
-                // elseif ($logged_in_user['user_type'] == 'coe-ic'){
-
-                //     $_SESSION['user'] = $logged_in_user;
-                //     $_SESSION['login_user'] = $username;
-                //     $_SESSION['userID'] = $rows['id'];
-                //     $_SESSION['success']  = "You are now logged in";
-                //     header('location: ic/coe.ic.main.php');
-                // }
-                
-                // elseif ($logged_in_user['user_type'] == 'ics-ic'){
-
-                //     $_SESSION['user'] = $logged_in_user;
-                //     $_SESSION['login_user'] = $username;
-                //     $_SESSION['userID'] = $rows['id'];
-                //     $_SESSION['success']  = "You are now logged in";
-                //     header('location: ic/ics.ic.main.php');
-                // }
-
-                // elseif ($logged_in_user['user_type'] == 'coe-ao'){
-
-                //     $_SESSION['user'] = $logged_in_user;
-                //     $_SESSION['login_user'] = $username;
-                //     $_SESSION['userID'] = $rows['id'];
-                //     $_SESSION['success']  = "You are now logged in";
-                //     header('location: ao/coe.ao.qual.php');
-                // }
-
-                // elseif ($logged_in_user['user_type'] == 'ics-ao'){
-
-                //     $_SESSION['user'] = $logged_in_user;
-                //     $_SESSION['login_user'] = $username;
-                //     $_SESSION['userID'] = $rows['id'];
-                //     $_SESSION['success']  = "You are now logged in";
-                //     header('location: ao/ics.qual.php');
-                // }
-                
-                // elseif($logged_in_user['user_type'] == 'user'){
-                //     $_SESSION['user'] = $logged_in_user;
-                //     $_SESSION['login_user'] = $username;
-                //     $_SESSION['userID'] = $rows['id'];
-                //     $_SESSION['success']  = "You are now logged in";
-                //     header('location: student/UserProfile.php');
-                // }
             } else {
                 $login_error = "Invalid email or password";
             }

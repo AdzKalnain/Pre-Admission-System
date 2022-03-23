@@ -94,6 +94,11 @@ elseif (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admission of
 			$content='interview.php';	
 			$interview='active';	
 			break;
+		case 'prequalified' :
+			$title="Pre-qualified - Pre-admission";	
+			$content='prequalified.php';	
+			$prequalified='active';	
+			break;
 		case 'qualified' :
 			$title="Qualified - Pre-admission";	
 			$content='qualified.php';	
@@ -103,6 +108,11 @@ elseif (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admission of
 			$title="Setting - Pre-admission";	
 			$content='setting.php';	
 			$setting='active';	
+			break;
+		case 'new_application' :
+			$title='New application - Pre-admission';
+			$content='tab/new_application.php';
+			$interview='active';
 			break;
 
 		default :

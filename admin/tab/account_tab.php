@@ -22,30 +22,45 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
-                <?php  
-                    $query2 = "SELECT * FROM college";
-                    $result2 = mysqli_query($mysqli, $query2);
-                    $options2 = "";
-                    while ($row2 = mysqli_fetch_array($result2)){
-                        $options2 = $options2."<option>$row2[1]</option>";
-                    }
-                ?>
-                <label class="control-label mt-3" for="college">Select College:</label>
-                <select class="form-control input-sm" name="college" id="college" required>
-                    <option value=""disbaled selected>Select a college</option>
-                    <?php echo $options2; ?> 
+            <?php if (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admin") { ?>
+                <div class="col-6">
+                    <?php  
+                        $query2 = "SELECT * FROM college";
+                        $result2 = mysqli_query($mysqli, $query2);
+                        $options2 = "";
+                        while ($row2 = mysqli_fetch_array($result2)){
+                            $options2 = $options2."<option>$row2[1]</option>";
+                        }
+                    ?>
+                    <label class="control-label mt-3" for="college">Select College:</label>
+                    <select class="form-control input-sm" name="college" id="college" required>
+                        <option value=""disbaled selected>Select a college</option>
+                        <?php echo $options2; ?> 
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="control-label mt-3" for="role">Select Role:</label>
+                    <select class="form-control input-sm" name="role" id="role" required>
+                        <option value=""disbaled selected>Select a role</option>
+                        <option value="admission officer">Admission Officer</option>
+                        <option value="evaluator">Evaluator</option>
+                        <option value="interviewer">Interviewer</option>
+                    </select>
+                </div>
+            <?php } else { ?>
+                <select class="form-control input-sm" name="college" id="college" hidden>
+                    <option value="<?php echo $_SESSION["userCollege"]; ?>" selected></option>
                 </select>
-            </div>
-            <div class="col-6">
-                <label class="control-label mt-3" for="role">Select Role:</label>
-                <select class="form-control input-sm" name="role" id="role" required>
-                    <option value=""disbaled selected>Select a role</option>
-                    <option value="admission officer">Admission Officer</option>
-                    <option value="evaluator">Evaluator</option>
-                    <option value="interviewer">Interviewer</option>
-                </select>
-            </div>
+                <div class="col-12">
+                    <label class="control-label mt-3" for="role">Select Role:</label>
+                    <select class="form-control input-sm" name="role" id="role" required>
+                        <option value=""disbaled selected>Select a role</option>
+                        <option value="admission officer">Admission Officer</option>
+                        <option value="evaluator">Evaluator</option>
+                        <option value="interviewer">Interviewer</option>
+                    </select>
+                </div>
+            <?php } ?>
         </div>
         <button class="btn btn-danger mt-3 d-flex ml-auto" type="submit" name="submit" value="submit">Save</button>
     </form>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
     
     <title>JSON to DB</title>
 
@@ -37,8 +37,8 @@
 
             
             foreach ($user_data as $row) {
-                $query = "INSERT INTO users (applicantid, username, fname, lname, email, user_type, password, studentType, college) 
-                           VALUES ('".$row["applicantid"]."', '".$row["username"]."', '".$row["fname"]."', '".$row["lname"]."', '".$row["email"]."', '".$row["user_type"]."', '".md5($row["password"])."', '".$row["studentType"]."', '".$row["college"]."');";
+                $query = "INSERT INTO users (applicantid, username, fname, lname, email, user_type, password, studentType) 
+                           VALUES ('".$row["applicantid"]."', '".$row["username"]."', '".$row["fname"]."', '".$row["lname"]."', '".$row["email"]."', '".$row["user_type"]."', '".md5($row["password"])."', '".$row["studentType"]."');";
                 $table_data = '
                     <tr>
                         <td>'.$row["applicantid"].'</td>
@@ -48,20 +48,18 @@
                         <td>'.$row["email"].'</td>
                         <td>'.$row["user_type"].'</td>
                         <td>'.$row["studentType"].'</td>
-                        <td>'.$row["college"].'</td>
                     </tr>'; 
                     if (mysqli_query($mysqli, $query)) {
                         echo '
                             <table class="table table-bordered">
                                 <tr>
-                                    <th width="5%">Applicant ID</th>
-                                    <th width="10%">Username</th>
+                                    <th width="15%">Applicant ID</th>
+                                    <th width="20%">Username</th>
                                     <th width="15%">FirstName</th>
                                     <th width="15%">LastName</th>
                                     <th width="15%">Email</th>
-                                    <th width="5%">User Type</th>
-                                    <th width="5%">Student Type</th>
-                                    <th width="30%">College</th> 
+                                    <th width="10%">User Type</th>
+                                    <th width="10%">Student Type</th>
                                 </tr>';
                                 echo $table_data;  
                             echo '</table>';
@@ -75,7 +73,7 @@
     </div>
 
 </body>
-    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
 </html>

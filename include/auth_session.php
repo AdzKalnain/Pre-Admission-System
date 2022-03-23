@@ -22,6 +22,9 @@
                     
                 }elseif($_SESSION['msgtype']=="success"){
                     echo "<script>window.onload = function(){document.getElementById('success_alert').click();}</script>";
+                
+                }elseif($_SESSION['msgtype']=="file_info"){
+                    echo "<script>window.onload = function(){document.getElementById('file_info_alert').click();}</script>";
                 } 
                 unset($_SESSION['message']);
                 unset($_SESSION['msgtype']);

@@ -37,29 +37,30 @@
                         if (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admin") {
                     ?>
                             <li class="nav-item"><a class="nav-link <?php echo $dashboard; ?>" href="<?php echo web_root; ?>admin/controller.php?page=dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $application; ?>" href="<?php echo web_root; ?>admin/controller.php?page=application"><i class="fas fa-user"></i><span>Applications</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $interview; ?>" href="<?php echo web_root; ?>admin/controller.php?page=interview"><i class="fas fa-table"></i><span>Interviewing</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $qualified; ?>" href="<?php echo web_root; ?>admin/controller.php?page=qualified"><i class="far fa-user-circle"></i><span>Qualified</span></a></li>
+                            <!-- <li class="nav-item"><a class="nav-link <?php echo $application; ?>" href="<?php echo web_root; ?>admin/controller.php?page=application"><i class="fas fa-user"></i><span>Applications</span></a></li> -->
+                            <li class="nav-item"><a class="nav-link <?php echo $interview; ?>" href="<?php echo web_root; ?>admin/controller.php?page=interview"><i class="fas fa-table"></i><span>Interviewee</span></a></li>
+                            <li class="nav-item"><a class="nav-link <?php echo $qualified; ?>" href="<?php echo web_root; ?>admin/controller.php?page=qualified"><i class="far fa-user-circle"></i><span>Eligible/Accepted</span></a></li>
                             <!-- <li class="nav-item"><a class="nav-link <?php echo $admitted; ?>" href="<?php echo web_root; ?>admin/controller.php?page=admitted"><i class="fas fa-user"></i><span>Admitted</span></a></li> -->
-                            <li class="nav-item"><a class="nav-link <?php echo $waiting; ?>" href="<?php echo web_root; ?>admin/controller.php?page=waiting"><i class="fas fa-user"></i><span>Waiting</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $rejected; ?>" href="<?php echo web_root; ?>admin/controller.php?page=rejected"><i class="fas fa-user"></i><span>Rejected</span></a></li>
+                            <!-- <li class="nav-item"><a class="nav-link <?php echo $waiting; ?>" href="<?php echo web_root; ?>admin/controller.php?page=waiting"><i class="fas fa-user"></i><span>Wait List</span></a></li> -->
+                            <!-- <li class="nav-item"><a class="nav-link <?php echo $rejected; ?>" href="<?php echo web_root; ?>admin/controller.php?page=rejected"><i class="fas fa-user"></i><span>Rejected</span></a></li> -->
                             <li class="nav-item"><a class="nav-link <?php echo $setting; ?>" href="<?php echo web_root; ?>admin/controller.php?page=setting"><i class="fas fa-cog"></i><span>Setting</span></a></li>
                     <?php    
                         } elseif (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "interviewer") {
                     ?>
                             <li class="nav-item"><a class="nav-link <?php echo $dashboard; ?>" href="<?php echo web_root; ?>admin/controller.php?page=dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                             <li class="nav-item"><a class="nav-link <?php echo $application; ?>" href="<?php echo web_root; ?>admin/controller.php?page=application"><i class="fas fa-user"></i><span>Applications</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $interview; ?>" href="<?php echo web_root; ?>admin/controller.php?page=interview"><i class="fas fa-table"></i><span>Interviewing</span></a></li>
+                            <li class="nav-item"><a class="nav-link <?php echo $interview; ?>" href="<?php echo web_root; ?>admin/controller.php?page=interview"><i class="fas fa-table"></i><span>Interviewee</span></a></li>
                     <?php
                         } elseif (isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admission officer") {
                     ?>
                             <li class="nav-item"><a class="nav-link <?php echo $dashboard; ?>" href="<?php echo web_root; ?>admin/controller.php?page=dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $application; ?>" href="<?php echo web_root; ?>admin/controller.php?page=application"><i class="fas fa-user"></i><span>Applications</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $interview; ?>" href="<?php echo web_root; ?>admin/controller.php?page=interview"><i class="fas fa-table"></i><span>Interviewing</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $qualified; ?>" href="<?php echo web_root; ?>admin/controller.php?page=qualified"><i class="far fa-user-circle"></i><span>Qualified</span></a></li>
+                            <!-- <li class="nav-item"><a class="nav-link <?php echo $application; ?>" href="<?php echo web_root; ?>admin/controller.php?page=application"><i class="fas fa-user"></i><span>Applications</span></a></li> -->
+                            <li class="nav-item"><a class="nav-link <?php echo $interview; ?>" href="<?php echo web_root; ?>admin/controller.php?page=interview"><i class="fas fa-table"></i><span>Interviewee</span></a></li>
+                            <li class="nav-item"><a class="nav-link <?php echo $prequalified; ?>" href="<?php echo web_root; ?>admin/controller.php?page=prequalified"><i class="fas fa-list"></i><span>Pre-qualified</span></a></li>
+                            <!-- <li class="nav-item"><a class="nav-link <?php echo $qualified; ?>" href="<?php echo web_root; ?>admin/controller.php?page=qualified"><i class="far fa-user-circle"></i><span>Qualified</span></a></li> -->
                             <!-- <li class="nav-item"><a class="nav-link <?php echo $admitted; ?>" href="<?php echo web_root; ?>admin/controller.php?page=admitted"><i class="fas fa-user"></i><span>Admitted</span></a></li> -->
-                            <li class="nav-item"><a class="nav-link <?php echo $waiting; ?>" href="<?php echo web_root; ?>admin/controller.php?page=waiting"><i class="fas fa-user"></i><span>Waiting</span></a></li>
-                            <li class="nav-item"><a class="nav-link <?php echo $rejected; ?>" href="<?php echo web_root; ?>admin/controller.php?page=rejected"><i class="fas fa-user"></i><span>Rejected</span></a></li>
+                            <!-- <li class="nav-item"><a class="nav-link <?php echo $waiting; ?>" href="<?php echo web_root; ?>admin/controller.php?page=waiting"><i class="fas fa-user"></i><span>Waiting</span></a></li> -->
+                            <!-- <li class="nav-item"><a class="nav-link <?php echo $rejected; ?>" href="<?php echo web_root; ?>admin/controller.php?page=rejected"><i class="fas fa-user"></i><span>Rejected</span></a></li> -->
                             <li class="nav-item"><a class="nav-link <?php echo $setting; ?>" href="<?php echo web_root; ?>admin/controller.php?page=setting"><i class="fas fa-cog"></i><span>Setting</span></a></li>
                     <?php
                         }
@@ -77,8 +78,8 @@
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">
-                                        <span class="d-none d-lg-inline mr-2 text-gray-600 small"><?php echo $_SESSION['login_user']; ?></span>
-                                        <img class="border rounded-circle img-profile" src="../assets/img/avatars/avatar1.jpeg">
+                                        <span class="d-none d-lg-inline mr-2 text-gray-600 small"><?php echo $_SESSION['username']; ?> - <?php echo $_SESSION['user_type']; ?></span>
+                                        <img class="border rounded-circle img-profile" src="../assets/img/avatars/profile.jpg">
                                     </a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
                                         <a class="dropdown-item" href="<?php echo web_root; ?>include/logout.php"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
@@ -91,6 +92,7 @@
                     <div class="message"><?php check_message();?></div>
                     <input id="error_alert" onclick="error_alert()" hidden />
                     <input id="success_alert" onclick="success_alert()" hidden />
+                    <input id="file_info_alert" onclick="file_info_alert()" hidden />
                     <?php require_once $content; ?>
             </div>
 

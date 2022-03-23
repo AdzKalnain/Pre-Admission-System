@@ -31,12 +31,20 @@ switch ($action) {
     case 'update_schedule' :
         updateSched();
         break;
+    
+    case 'disable_schedule' :
+        disableSched();
+        break;
+
+    case 'new_applicant' :
+        newApplicant();
+        break;
 }
 
 function requirement() {
     global $mysqli;
     $gpa = $cet = $course = "";
-    $gpa_error = $cet_error = $course_error = "";
+    $gpa_error = $cet_error = "";
 
     if(isset($_POST['submit'])){
         // FETCH GPA
@@ -52,15 +60,11 @@ function requirement() {
             $cet = $_POST["cet"];
         }
         // FETCH COURSE
-        if (empty($_POST["course"])) {
-            $course_error = "true";
-        }else {
-            $course = $_POST["course"];
-        }
-
+        $course = $_POST["course_id"];
+        
         // Saving the fetch data upon passing the if statement
-        if (empty($gpa_error) && empty($cet_error) && empty($course_error)) {
-            $sql = "UPDATE coursestbl SET cet_req = ?, gpa_req = ? WHERE course_name = ?";
+        if (empty($gpa_error) && empty($cet_error)) {
+            $sql = "UPDATE coursestbl SET cet_req = ?, gpa_req = ? WHERE course_id = ?";
             if ($stmt = $mysqli->prepare($sql)) {
                 $stmt->bind_param("sss", $param_gpa, $param_cet, $param_course);
                 $param_gpa = $gpa;
@@ -81,7 +85,7 @@ function requirement() {
 function course() {
     global $mysqli;
     $course = $description = $college = $college_id = "";
-    $course_error = $description_error = $college_error = "";
+    $course_error = $description_error = $college_error = $img_error = "";
 
     if(isset($_POST['submit'])) {
         // FETCH THE COURSE NAME
@@ -102,26 +106,45 @@ function course() {
         } else {
             $college = $_POST['college'];
         }
+        if (empty($_FILES["course-img"])) {
+            $img_error = "true";
+        } else {
+            $img_file = $_FILES['course-img']['name'];
+            $img_ext = pathinfo($img_file, PATHINFO_EXTENSION);
+        }
+        $allowed = ['png','jpg','jpeg'];
 
         if (empty($course_error) && empty($description_error) && empty($college_error)) {
-            $result = "SELECT * FROM college WHERE college_name = '$college'";
-            $query = mysqli_query($mysqli,$result);
-            while ($rows = mysqli_fetch_assoc($query)) {
-                $sql = "INSERT into coursestbl (course_name, course_description, college_id) VALUES (?,?,?)";
-                if ($stmt = $mysqli->prepare($sql)) {
-                    $stmt ->bind_param("sss", $param_course, $param_description, $param_college);
-                    $param_course = $course;
-                    $param_description = $description;
-                    $param_college = $rows['college_id'];
-                    if ($stmt->execute()) {
-                        message ("Saved!","success");
-                        header("location: ../controller.php?page=setting");
+            if (!in_array($img_ext, $allowed)) {
+                message ("Your file extension must be .jpeg, .jpg, or .png","file_info");
+                header("location: ../controller.php?page=setting");
+            } else {
+                $path = '../../logo/';
+                $maxid = mysqli_query($mysqli,"SELECT MAX(course_id) FROM coursestbl");
+                $row = mysqli_fetch_array($maxid);
+                $img_file = ($row[0]+1) . '-' . $img_file;
+                move_uploaded_file($_FILES['course-img']['tmp_name'],($path . $img_file));
+
+                $result = "SELECT * FROM college WHERE college_name = '$college'";
+                $query = mysqli_query($mysqli,$result);
+                while ($rows = mysqli_fetch_assoc($query)) {
+                    $sql = "INSERT into coursestbl (course_name, course_description, college_id, course_img) VALUES (?,?,?,?)";
+                    if ($stmt = $mysqli->prepare($sql)) {
+                        $stmt ->bind_param("ssis", $param_course, $param_description, $param_college, $param_logo);
+                        $param_course = $course;
+                        $param_description = $description;
+                        $param_college = $rows['college_id'];
+                        $param_logo = $img_file;
+                        if ($stmt->execute()) {
+                            message ("Saved!","success");
+                            header("location: ../controller.php?page=setting");
+                        } else {
+                            message ("Something went wrong please try again later", "error");
+                        }
                     } else {
                         message ("Something went wrong please try again later", "error");
+                        header("location: ../controller.php?page=setting");
                     }
-                } else {
-                    message ("Something went wrong please try again later", "error");
-                    header("location: ../controller.php?page=setting");
                 }
             }
         } else {
@@ -134,39 +157,77 @@ function course() {
 function college() {
     global $mysqli;
     $college = $description = "";
-    $college_error = $description_error = "";
+    $img_ext = $img_file = "";
+    $college_error = $description_error = $img_error = "";
 
     if(isset($_POST['submit'])) {
-        // FETCH THE COLLEGE NAME
         if (empty($_POST['college-name'])) {
             $college_error = "true";
         } else {
             $college = $_POST['college-name'];
         }
-        // FETCH THE COLLEGE DESCRIPTION
         if (empty($_POST['college-description'])) {
             $description_error = "true";
         } else {
             $description = $_POST['college-description'];
         }
+        if (empty($_FILES["college-img"])) {
+            $img_error = "true";
+        } else {
+            $img_file = $_FILES['college-img']['name'];
+            $img_ext = pathinfo($img_file, PATHINFO_EXTENSION);
+        }
 
-        if (empty($college_error) && empty($description_error)) {
-            $sql = "INSERT into college (college_name, college_description) VALUES (?,?)";
-            if($stmt = $mysqli->prepare($sql)) {
-                $stmt->bind_param("ss",$param_collegename, $param_collegedescription);
-                $param_collegename = $college;
-                $param_collegedescription = $description;
-                if($stmt->execute()) {
-                    message("Success", "success");
+        $allowed = ['png','jpg','jpeg'];
+
+        if (empty($college_error)) {
+            // if (empty($img_error)) {
+                if (!in_array($img_ext, $allowed)) {
+                    message ("Your file extension must be .jpeg, .jpg, or .png","file_info");
                     header("location: ../controller.php?page=setting");
                 } else {
-                    message("Something went wrong please try again", "error");
-                    header("location: ../controller.php?page=setting");
+                    $path = '../../logo/';
+                    $maxid = mysqli_query($mysqli,"SELECT MAX(college_id) FROM college");
+                    $row = mysqli_fetch_array($maxid);
+                    $img_file = ($row[0]+1) . '-' . $img_file;
+                    move_uploaded_file($_FILES['college-img']['tmp_name'],($path . $img_file));
+
+                    $sql = "INSERT INTO college (college_name, college_img, college_description) VALUES (?,?,?)";
+                    if($stmt = $mysqli->prepare($sql)) {
+                        $stmt->bind_param("sss",$param_collegename, $param_img, $param_collegedescription);
+                        $param_collegename = $college;
+                        $param_img = $img_file;
+                        $param_collegedescription = $description;
+                        if($stmt->execute()) {
+                            message("Success", "success");
+                            header("location: ../controller.php?page=setting");
+                        } else {
+                            message("Something went wrong please try again", "error");
+                            header("location: ../controller.php?page=setting");
+                        }
+                    } else {
+                        message("Something went wrong please try again", "error");
+                        header("location: ../controller.php?page=setting");
+                    }
                 }
-            } else {
-                message("Something went wrong please try again", "error");
-                header("location: ../controller.php?page=setting");
-            }
+            // } else {
+            //     $sql = "INSERT INTO college (college_name, college_description) VALUES (?,?)";
+            //     if($stmt = $mysqli->prepare($sql)) {
+            //         $stmt->bind_param("ss",$param_collegename, $param_collegedescription);
+            //         $param_collegename = $college;
+            //         $param_collegedescription = $description;
+            //         if($stmt->execute()) {
+            //             message("Success", "success");
+            //             header("location: ../controller.php?page=setting");
+            //         } else {
+            //             message("Something went wrong please try again", "error");
+            //             header("location: ../controller.php?page=setting");
+            //         }
+            //     } else {
+            //         message("Something went wrong please try again", "error");
+            //         header("location: ../controller.php?page=setting");
+            //     }
+            // }
         } else {
             message ("Something went wrong please try again later", "error");
             header("location: ../controller.php?page=setting");
@@ -176,8 +237,8 @@ function college() {
 
 function slot() {
     global $mysqli;
-    $accepting = $waiting = $course = "";
-    $accepting_error = $waiting_error = $course_error = "";
+    $accepting = $waiting = $course_id = "";
+    $accepting_error = $waiting_error = "";
 
     if (isset($_POST['submit'])) {
         // FETCH THE TOTAL NUMBER OF ACCEPTING APPLICANT
@@ -192,20 +253,16 @@ function slot() {
         } else {
             $waiting = $_POST['waiting'];
         }
-        // FETCH THE COURSE WHERE IT BELONG
-        if (empty($_POST['course'])) {
-            $course_error = "true";
-        } else {
-            $course = $_POST['course'];
-        }
 
-        if (empty($accepting_error) && empty($waiting_error) && empty($course_error)) {
-            $sql = "UPDATE coursestbl SET quota = ?, waiting = ? WHERE course_name = ?";
+        $course_id = $_POST['course_id'];
+
+        if (empty($accepting_error) && empty($waiting_error)) {
+            $sql = "UPDATE coursestbl SET quota = ?, waiting = ? WHERE course_id = ?";
             if($stmt = $mysqli->prepare($sql)) {
                 $stmt->bind_param("iis", $param_accepting, $param_waiting, $param_course);
                 $param_accepting = $accepting;
                 $param_waiting = $waiting;
-                $param_course = $course;
+                $param_course = $course_id;
                 if($stmt->execute()) {
                     message("Saved!","success");
                     header("location: ../controller.php?page=setting");
@@ -269,7 +326,7 @@ function account() {
 
         if (empty($fname_error) && empty($lname_error) && empty($email_error) && empty($password_error) && empty($college_error) && empty($role_error)) {
             
-            $sql = "INSERT into users (username, fname, lname, email, user_type, password, college) VALUES (?,?,?,?,?,?,?)";
+            $sql = "INSERT into users (username, fname, lname, email, user_type, password, college_name) VALUES (?,?,?,?,?,?,?)";
             if($stmt = $mysqli->prepare($sql)) {
                 $stmt->bind_param("sssssss",$param_username, $param_fname, $param_lname, $param_email, $param_type, $param_password, $param_college);
                 $param_username = $email;
@@ -394,6 +451,85 @@ function updateSched() {
         } else {
             message("Something went wrong please try again", "error");
             header("location: ../controller.php?page=setting");
+        }
+    }
+}
+
+function disableSched() {
+    global $mysqli;
+    $sql = "UPDATE admissionbatch SET is_active = ? WHERE is_active = ?";
+    if ($stmt = $mysqli->prepare($sql)) {
+        $stmt->bind_param("ii", $param_update, $param_status);
+        $param_update = 0;
+        $param_status = 1;
+        if ($stmt->execute()) {
+            message("Saved!","success");
+            header("location: ../controller.php?page=setting");
+        } else {
+            message("Something went wrong please try again", "error");
+            header("location: ../controller.php?page=setting");    
+        }
+    } else {
+        message("Something went wrong please try again", "error");
+        header("location: ../controller.php?page=setting");
+    }
+}
+
+function newApplicant() {
+    global $mysqli;
+    $fname = $lname = $email = $cetId = $cetScore = $studentType = $course = "";
+    $fname_error = $lname_error = $email_error = $cetId_error = $cetScore_error = $studentType_error = $course_error = "";
+
+    if (isset($_POST['submit'])) {
+        if (empty($_POST['fname'])) {
+            $fname_error = "true";
+        } else {
+            $fname = $_POST['fname'];
+        }
+
+        if (empty($_POST['lname'])) {
+            $lname_error = "true";
+        } else {
+            $lname = $_POST['lname'];
+        }
+
+        if (empty($_POST['email'])) {
+            $email_error = "true";
+        } else {
+            $email = $_POST['email'];
+        }
+
+        if (empty($_POST['cetId'])) {
+            $cetId = "true";
+        } else {
+            $cetId = $_POST['cetId'];
+        }
+
+        if (empty($_POST['cetScore'])) {
+            $cetScore_error = "true";
+        } else {
+            $cetScore = $_POST['cetScore'];
+        }
+
+        if (empty($_POST['studentType'])) {
+            $studentType_error = "true";
+        } else {
+            $studentType = $_POST['studentType'];
+        }
+
+        if (empty($_POST['course'])) {
+            $course_error = "true";
+        } else {
+            $course = $_POST['course'];
+        }
+
+        if (empty($fname_error) && empty($lname_error) && empty($email_error) && empty($cetId_error) && empty($cetScore_error) && empty($studentType_error) && empty($course_error)) {
+
+            
+
+        } else {
+            message("Something went wrong please try again","error");
+            header("location: ../controller.php?page=interview");
         }
     }
 }

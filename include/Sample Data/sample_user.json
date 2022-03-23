@@ -7,8 +7,7 @@
             "email": "adzkalnain@gmail.com",
             "user_type": "admin",
             "password": "admin",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 201400001,
@@ -18,8 +17,7 @@
             "email": "aizzy@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 201400002,
@@ -29,8 +27,7 @@
             "email": "migfren@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 201800002,
@@ -40,8 +37,7 @@
             "email": "wenefredo@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 201800003,
@@ -51,8 +47,7 @@
             "email": "dale@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 201800004,
@@ -62,8 +57,7 @@
             "email": "mark@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 201800005,
@@ -73,8 +67,7 @@
             "email": "josua@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 201800006,
@@ -84,8 +77,7 @@
             "email": "janrenzo@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 201801928,
@@ -95,8 +87,7 @@
             "email": "jason@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 202000018,
@@ -106,8 +97,7 @@
             "email": "juztyne@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         },
         {
             "applicantid": 202100001,
@@ -117,7 +107,6 @@
             "email": "hannah@gmail.com",
             "user_type": "student",
             "password": "default",
-            "studentType": "Regular",
-            "college": "Institute of Computer Studied"
+            "studentType": "Regular"
         }
 ]

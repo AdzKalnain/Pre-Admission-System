@@ -1,6 +1,6 @@
 <hr>
 <div class="college" id="setting-content-container">    
-    <form action="function/tab_function.php?action=college" method="post" class="form">
+    <form action="function/tab_function.php?action=college" method="post" class="form" enctype="multipart/form-data">
         <div class="row">
             <div class="col-12">
                 <label for="college-name">College Name:</label>
@@ -8,10 +8,17 @@
             </div>
             <div class="col-12">
                 <label for="college-description">Description:</label>
-                <textarea name="college-description" id="college-description" cols="30" rows="10" class="form-control w-100"></textarea>
+                <textarea name="college-description" id="college-description" cols="30" rows="10" class="form-control w-100 mb-3"></textarea>
+            </div>
+            <div class="col-12">
+                <label class="btn btn-outline-danger w-75" for="college-img">
+                    <input id="college-img" type="file" name="college-img" style="display:none" onchange="$('#upload-college-logo').text('Logo/Seal')" required>
+                    Upload logo/seal
+                </label>
+                <span class='label label-secondary' id="upload-college-logo"></span>
             </div>
             <div class="col-12 d-flex justify-content-end mt-3">
-                <button class="btn btn-outline-danger mr-2" type="button" data-toggle="modal" data-target="#collegeModal">See Colleges</button>
+                <button class="btn btn-outline-danger mr-2" type="button" data-toggle="modal" data-target="#collegeModal">College List</button>
                 <button class="btn btn-danger" type="submit" name="submit" value="submit">Save</button>
             </div>
         </div>
@@ -45,7 +52,10 @@
                                 </tr>
                                 <?php } ?>
                             </tbody>
-                        </table>    
+                        </table>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+                        </div>    
                     </div>
                 </div>
             </div>
